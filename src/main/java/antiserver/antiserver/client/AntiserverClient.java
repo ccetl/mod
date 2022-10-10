@@ -44,7 +44,7 @@ public class AntiserverClient implements ClientModInitializer {
     }
 
     public static void createConfigFile() {
-        String path = Paths.get(".").toAbsolutePath().normalize().toString() + "/antiServerConfig.txt";
+        String path = Paths.get(".").toAbsolutePath().normalize() + "/config/antiServerConfig.txt";
         try {
             File antiServerConfig = new File(path);
             antiServerConfig.createNewFile();
@@ -54,7 +54,7 @@ public class AntiserverClient implements ClientModInitializer {
     }
 
     public static void readConfigFile() {
-        String path = Paths.get(".").toAbsolutePath().normalize().toString() + "/antiServerConfig.txt";
+        String path = Paths.get(".").toAbsolutePath().normalize() + "/config/antiServerConfig.txt";
         try {
             File antiServerConfig = new File(path);
             Scanner reader = new Scanner(antiServerConfig);
