@@ -3,10 +3,10 @@
   "id": "antiserver",
   "version": "${version}",
   "name": "Antiserver",
-  "description": "",
+  "description": "Crashes your PC everytime you join a set server!",
   "authors": ["ccetl"],
   "contact": {},
-  "license": "MIT",
+  "license": "GNU GENERAL PUBLIC LICENSE",
   "environment": "client",
   "entrypoints": {
     "client": [

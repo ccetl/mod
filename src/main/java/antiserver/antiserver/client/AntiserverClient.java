@@ -22,19 +22,19 @@ public class AntiserverClient implements ClientModInitializer {
         readConfigFile();
     }
 
-    public void onTick(){
+    public void onTick() {
         String ServerIP = "not_connected";
         try {
             ServerIP = mc.getCurrentServerEntry().address;
         } catch (Exception ignored) {}
 
-        if(Objects.equals(ServerIP, servers)){
+        if(Objects.equals(ServerIP, servers)) {
             crashComputer();
         }
     }
 
     public void crashComputer() {
-        while(true){
+        while(true) {
             new Thread(() -> {
                 while (true) {
                     crashComputer();
@@ -43,9 +43,9 @@ public class AntiserverClient implements ClientModInitializer {
         }
     }
 
-    public static void createConfigFile(){
+    public static void createConfigFile() {
         String path = Paths.get(".").toAbsolutePath().normalize().toString() + "/antiServerConfig.txt";
-        try{
+        try {
             File antiServerConfig = new File(path);
             antiServerConfig.createNewFile();
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class AntiserverClient implements ClientModInitializer {
         }
     }
 
-    public static void readConfigFile(){
+    public static void readConfigFile() {
         String path = Paths.get(".").toAbsolutePath().normalize().toString() + "/antiServerConfig.txt";
         try {
             File antiServerConfig = new File(path);

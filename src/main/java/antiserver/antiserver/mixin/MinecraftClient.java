@@ -7,11 +7,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(MinecraftClient.class)
-public class minecraftclient {
+@Mixin(net.minecraft.client.MinecraftClient.class)
+public class MinecraftClient {
 
     @Inject(at = @At("HEAD"), method = "tick")
-    public void ontick(CallbackInfo ci){
+    public void onTick(CallbackInfo ci) {
         AntiserverClient.INSTANCE.onTick();
     }
 }
