@@ -4,17 +4,13 @@
   "version": "${version}",
   "name": "Antiserver",
   "description": "",
-  "authors": [],
+  "authors": ["ccetl"],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/antiserver/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "antiserver.antiserver.client.AntiserverClient"
-    ],
-    "main": [
-      "antiserver.antiserver.Antiserver"
     ]
   },
   "mixins": [
