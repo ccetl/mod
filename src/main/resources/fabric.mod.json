@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "antiserver",
-  "version": "${version}",
+  "version": "1.4",
   "name": "Antiserver",
   "description": "Crashes your PC everytime you join a set server!",
   "authors": ["ccetl"],

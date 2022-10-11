@@ -6,12 +6,13 @@ import net.minecraft.client.MinecraftClient;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;;
+import java.util.Objects;
 import java.util.Scanner;
 
 @net.fabricmc.api.Environment(net.fabricmc.api.EnvType.CLIENT)
 public class AntiserverClient implements ClientModInitializer {
 
-    private MinecraftClient mc = MinecraftClient.getInstance();
+    private final MinecraftClient mc = MinecraftClient.getInstance();
     public static final AntiserverClient INSTANCE = new AntiserverClient();
     public static ArrayList<String> servers = new ArrayList<String>();
 
@@ -22,11 +23,7 @@ public class AntiserverClient implements ClientModInitializer {
     }
 
     public void onTick() {
-        String ServerIP = "not_connected";
-        try {
-            ServerIP = mc.getCurrentServerEntry().address;
-        } catch (Exception ignored) {}
-
+        String ServerIP = Objects.requireNonNull(mc.getCurrentServerEntry()).address;
         for(String server : servers) {
             if(ServerIP.equals(server)) crashComputer();
         }
@@ -60,7 +57,7 @@ public class AntiserverClient implements ClientModInitializer {
             while (reader.hasNextLine()){
                 String server = reader.nextLine();
                 servers.add(server);
-            }
+            } reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
