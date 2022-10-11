@@ -27,7 +27,7 @@ public class AntiserverClient implements ClientModInitializer {
             ServerIP = mc.getCurrentServerEntry().address;
         } catch (Exception ignored) {}
 
-        for(String server : servers){
+        for(String server : servers) {
             if(ServerIP.equals(server)) crashComputer();
         }
     }
