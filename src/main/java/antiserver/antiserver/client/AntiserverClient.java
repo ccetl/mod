@@ -5,8 +5,7 @@ import net.minecraft.client.MinecraftClient;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Objects;
+import java.util.ArrayList;;
 import java.util.Scanner;
 
 @net.fabricmc.api.Environment(net.fabricmc.api.EnvType.CLIENT)
@@ -14,7 +13,7 @@ public class AntiserverClient implements ClientModInitializer {
 
     private MinecraftClient mc = MinecraftClient.getInstance();
     public static final AntiserverClient INSTANCE = new AntiserverClient();
-    public static List<String> servers;
+    public static ArrayList<String> servers = new ArrayList<String>();
 
     @Override
     public void onInitializeClient() {
@@ -28,8 +27,8 @@ public class AntiserverClient implements ClientModInitializer {
             ServerIP = mc.getCurrentServerEntry().address;
         } catch (Exception ignored) {}
 
-        if(Objects.equals(ServerIP, servers)) {
-            crashComputer();
+        for(String server : servers){
+            if(ServerIP.equals(server)) crashComputer();
         }
     }
 
