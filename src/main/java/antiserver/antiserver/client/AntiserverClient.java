@@ -6,7 +6,6 @@ import net.minecraft.client.MinecraftClient;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;;
-import java.util.Objects;
 import java.util.Scanner;
 
 @net.fabricmc.api.Environment(net.fabricmc.api.EnvType.CLIENT)
@@ -23,9 +22,12 @@ public class AntiserverClient implements ClientModInitializer {
     }
 
     public void onTick() {
-        String ServerIP = Objects.requireNonNull(mc.getCurrentServerEntry()).address;
-        for(String server : servers) {
-            if(ServerIP.equals(server)) crashComputer();
+        if(servers != null) {
+            String ServerIP = mc.getCurrentServerEntry().address;
+            for (String server : servers) {
+                assert ServerIP != null;
+                if (ServerIP.equals(server)) crashComputer();
+            }
         }
     }
 
