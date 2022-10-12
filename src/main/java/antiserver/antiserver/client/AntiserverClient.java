@@ -1,11 +1,14 @@
 package antiserver.antiserver.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.loader.impl.util.log.Log;
+import net.fabricmc.loader.impl.util.log.LogCategory;
+import net.fabricmc.loader.impl.util.log.LogLevel;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.ArrayList;;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 @net.fabricmc.api.Environment(net.fabricmc.api.EnvType.CLIENT)
@@ -13,7 +16,7 @@ public class AntiserverClient implements ClientModInitializer {
 
     private final MinecraftClient mc = MinecraftClient.getInstance();
     public static final AntiserverClient INSTANCE = new AntiserverClient();
-    public static ArrayList<String> servers = new ArrayList<String>();
+    public static ArrayList<String> servers = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
@@ -21,7 +24,7 @@ public class AntiserverClient implements ClientModInitializer {
         readConfigFile();
     }
 
-    public void onTick() {
+    public void onConnect() {
         if(servers != null) {
             String ServerIP = mc.getCurrentServerEntry().address;
             for (String server : servers) {
@@ -43,9 +46,14 @@ public class AntiserverClient implements ClientModInitializer {
 
     public static void createConfigFile() {
         String path = Paths.get(".").toAbsolutePath().normalize() + "/config/antiServerConfig.txt";
+        String AntiServer = "AntiServer";
         try {
             File antiServerConfig = new File(path);
-            antiServerConfig.createNewFile();
+            if(antiServerConfig.createNewFile()){
+                Log.log(LogLevel.INFO, LogCategory.create(AntiServer), "Created a config file.");
+            } else {
+                Log.log(LogLevel.INFO, LogCategory.create(AntiServer), "Creation failed or config file already exists.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
